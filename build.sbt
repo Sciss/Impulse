@@ -8,7 +8,7 @@ scalaVersion       := "2.11.2"
 
 crossScalaVersions := Seq("2.11.2", "2.10.4")
 
-description        := "A simple tool to record room impulse repsonses"
+description        := "A simple tool to record sound impulse responses"
 
 homepage           := Some(url("https://github.com/Sciss/" + name.value))
 
