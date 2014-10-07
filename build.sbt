@@ -1,3 +1,5 @@
+import AssemblyKeys._
+
 name               := "Impulse"
 
 version            := "0.1.0-SNAPSHOT"
@@ -65,3 +67,14 @@ pomExtra := { val n = name.value
   </developer>
 </developers>
 }
+
+// ---- packaging ----
+
+seq(assemblySettings: _*)
+
+test    in assembly := ()
+
+target  in assembly := baseDirectory.value
+
+jarName in assembly := s"${name.value}.jar"
+
