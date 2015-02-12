@@ -102,7 +102,7 @@ class MainWindow extends WindowImpl { win =>
   private val parOutChannel   = "Output Channel"
   private val parFolder       = "Output Folder"
 
-  private val fileFormat = new SimpleDateFormat("'sweep'ddyyMM'_'HHmmss'.aif'", Locale.US)
+  private val fileFormat = new SimpleDateFormat("'sweep'yyMMdd'_'HHmmss'.aif'", Locale.US)
 
   private val timer = new Timer(1000, ActionListener(_ => timerBang()))
 
