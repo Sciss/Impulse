@@ -17,6 +17,8 @@ Impulse is currently a one-window tool. All settings can be adjusted in this win
 
 The program produces a sine sweep that is output to a particular speaker channel. The corresponding response is recorded through microphone channels. A bit of manual post-processing is needed to get the actual impulse response. This is described at the end of this document.
 
+![Screenshot](screenshot.png)
+
 ### hardware settings
 
 Select the audio-device and maximum number of input and output channels needed. On Linux, 'Audio Device' corresponds with the Jack client name. The number of channels must be high enough so that you can access the desired input and output channel (even if just recording mono).
