@@ -1,6 +1,7 @@
 # Impulse
 
 [![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=sciss&url=https%3A%2F%2Fgithub.com%2FSciss%2FImpulse&title=Impulse%20Response%20Recorder&language=Scala&tags=github&category=software)
+[![Build Status](https://travis-ci.org/Sciss/Impulse.svg?branch=master)](https://travis-ci.org/Sciss/Impulse)
 
 ## statement
 
