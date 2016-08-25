@@ -1,35 +1,22 @@
-import AssemblyKeys._
-
 name               := "Impulse"
-
 version            := "0.1.0-SNAPSHOT"
-
 organization       := "de.sciss"
-
-scalaVersion       := "2.11.5"
-
-crossScalaVersions := Seq("2.11.5", "2.10.4")
-
+scalaVersion       := "2.11.8"
+crossScalaVersions := Seq("2.11.8", "2.10.6")
 description        := "A simple tool to record sound impulse responses"
-
 homepage           := Some(url("https://github.com/Sciss/" + name.value))
-
 licenses           := Seq("GPL v3+" -> url("http://www.gnu.org/licenses/gpl-3.0.txt"))
 
-lazy val lucreSynthVersion          = "2.14.1"
-
-lazy val desktopVersion             = "0.6.0"
-
-lazy val webLaFVersion              = "1.28"
-
-lazy val scalaColliderSwingVersion  = "1.24.0"
-
+lazy val lucreSynthVersion          = "3.5.2"
+lazy val desktopVersion             = "0.7.2"
+lazy val subminVersion              = "0.2.1"
+lazy val scalaColliderSwingVersion  = "1.29.0"
 lazy val fileUtilVersion            = "1.1.1"
 
 libraryDependencies ++= Seq(
   "de.sciss" %% "lucresynth"              % lucreSynthVersion,
   "de.sciss" %% "desktop-mac"             % desktopVersion,
-  "de.sciss" %  "weblaf"                  % webLaFVersion,
+  "de.sciss" %  "submin"                  % subminVersion,
   "de.sciss" %% "scalacolliderswing-core" % scalaColliderSwingVersion,
   "de.sciss" %% "fileutil"                % fileUtilVersion
 )
@@ -67,11 +54,7 @@ pomExtra := { val n = name.value
 
 // ---- packaging ----
 
-seq(assemblySettings: _*)
-
-test    in assembly := ()
-
-target  in assembly := baseDirectory.value
-
-jarName in assembly := s"${name.value}.jar"
+test            in assembly := ()
+target          in assembly := baseDirectory.value
+assemblyJarName in assembly := s"${name.value}.jar"
 

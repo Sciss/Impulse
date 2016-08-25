@@ -2,7 +2,7 @@
  *  MainWindow.scala
  *  (Impulse)
  *
- *  Copyright (c) 2012-2014 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2012-2016 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU General Public License v3+
  *
@@ -15,22 +15,22 @@ package de.sciss.impulse
 
 import java.awt.Color
 import java.text.SimpleDateFormat
-import java.util.{Locale, Date}
-import javax.swing.{Timer, JPanel}
+import java.util.{Date, Locale}
+import javax.swing.{JPanel, Timer}
 
 import de.sciss.audiowidgets.{LCDFont, LCDPanel}
-import de.sciss.desktop.{DialogSource, OptionPane, FileDialog, Preferences, Window, Util, PrefsGUI, WindowHandler}
 import de.sciss.desktop.impl.WindowImpl
+import de.sciss.desktop.{DialogSource, FileDialog, OptionPane, Preferences, PrefsGUI, Util, Window, WindowHandler}
 import de.sciss.file._
-import de.sciss.lucre.synth.{Buffer, NodeGraph, Synth, InMemory, Server}
-import de.sciss.synth.{ControlSet, addToHead, SynthGraph, ServerConnection}
-import de.sciss.{numbers, synth, osc}
-import de.sciss.swingplus.{Separator, GroupPanel}
+import de.sciss.lucre.synth.{Buffer, InMemory, Server, Synth}
+import de.sciss.swingplus.{GroupPanel, Separator}
 import de.sciss.synth.swing.ServerStatusPanel
+import de.sciss.synth.{ControlSet, ServerConnection, SynthGraph, addToHead}
+import de.sciss.{numbers, osc, synth}
 
+import scala.swing.Swing._
 import scala.swing.event.EditDone
-import scala.swing.{Action, BoxPanel, Orientation, FlowPanel, Button, TextField, Component, Swing, Alignment, Label}
-import Swing._
+import scala.swing.{Action, Alignment, BoxPanel, Button, Component, FlowPanel, Label, Orientation, Swing, TextField}
 import scala.util.control.NonFatal
 
 class MainWindow extends WindowImpl { win =>
@@ -367,9 +367,9 @@ ggTimerBeep.enabled = false  // XXX TODO
     val s1 = Server(s)
     s.addListener {
       case synth.Server.Offline =>
-        cursor.step { implicit tx =>
-          NodeGraph.removeServer(s1)
-        }
+//        cursor.step { implicit tx =>
+//          NodeGraph.removeServer(s1)
+//        }
         onEDT {
           serverOption            = None
           audioServerPane.server  = None
@@ -377,9 +377,9 @@ ggTimerBeep.enabled = false  // XXX TODO
           actionStop  .enabled    = false
         }
     }
-    cursor.step { implicit tx =>
-      NodeGraph.addServer(s1)
-    }
+//    cursor.step { implicit tx =>
+//      NodeGraph.addServer(s1)
+//    }
     onEDT {
       serverOption            = Some(s1)
       actionRecord.enabled    = true
@@ -426,7 +426,7 @@ ggTimerBeep.enabled = false  // XXX TODO
         s"Exceeds number of audio input bus channels (${s.config.inputBusChannels})")
 
     if (inIndex + numInChannels > s.config.inputBusChannels)
-      throw InvalidParameter("Input Channel Range", inCh to (inCh + numInChannels - 1),
+      throw InvalidParameter("Input Channel Range", inCh until (inCh + numInChannels),
         s"Exceeds number of audio input bus channels (${s.config.inputBusChannels})")
 
     if (!folder.isDirectory || !folder.canWrite)

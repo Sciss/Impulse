@@ -2,7 +2,7 @@
  *  Impulse.scala
  *  (Impulse)
  *
- *  Copyright (c) 2012-2014 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2012-2016 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU General Public License v3+
  *
@@ -13,14 +13,10 @@
 
 package de.sciss.impulse
 
-import com.alee.laf.WebLookAndFeel
 import de.sciss.desktop.Menu
 import de.sciss.desktop.Menu.Root
 import de.sciss.desktop.impl.SwingApplicationImpl
-import de.sciss.osc
-import de.sciss.lucre.synth.{Txn, Server}
-
-import scala.concurrent.stm.TxnExecutor
+import de.sciss.submin.Submin
 
 object Impulse extends SwingApplicationImpl("Impulse") {
   type Document = Unit
@@ -40,7 +36,7 @@ object Impulse extends SwingApplicationImpl("Impulse") {
   }
 
   override protected def init(): Unit = {
-    WebLookAndFeel.install()
+    Submin.install(false) // dark currently has glitches
     new MainWindow
   }
 }
