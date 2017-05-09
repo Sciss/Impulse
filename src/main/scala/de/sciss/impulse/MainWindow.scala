@@ -2,7 +2,7 @@
  *  MainWindow.scala
  *  (Impulse)
  *
- *  Copyright (c) 2012-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2014-2017 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU General Public License v3+
  *
@@ -33,7 +33,7 @@ import scala.swing.event.EditDone
 import scala.swing.{Action, Alignment, BoxPanel, Button, Component, FlowPanel, Label, Orientation, Swing, TextField}
 import scala.util.control.NonFatal
 
-class MainWindow extends WindowImpl { win =>
+final class MainWindow extends WindowImpl { win =>
 
   def handler: WindowHandler = Impulse.windowHandler
 
@@ -75,22 +75,22 @@ class MainWindow extends WindowImpl { win =>
     gg
   }
 
-  private val txtRecord = "Record Sweep"
+  private[this] val txtRecord = "Record Sweep"
 
-  private val actionRecord = new Action(txtRecord) {
+  private[this] val actionRecord = new Action(txtRecord) {
     enabled = false
 
     def apply(): Unit = selfTimer()
   }
 
-  private val actionStop = new Action("Stop") {
+  private[this] val actionStop = new Action("Stop") {
     enabled = false
 
     def apply(): Unit = stop()
   }
 
-  private val audioServerPane = new ServerStatusPanel()
-  private val ggTimer         = new Label {
+  private[this] val audioServerPane = new ServerStatusPanel()
+  private[this] val ggTimer         = new Label {
     font  = LCDFont()
     text  = "-000"
     preferredSize = preferredSize
@@ -99,12 +99,12 @@ class MainWindow extends WindowImpl { win =>
     text  = "--"
   }
 
-  private val parOutChannel   = "Output Channel"
-  private val parFolder       = "Output Folder"
+  private[this] val parOutChannel   = "Output Channel"
+  private[this] val parFolder       = "Output Folder"
 
-  private val fileFormat = new SimpleDateFormat("'sweep'yyMMdd'_'HHmmss'.aif'", Locale.US)
+  private[this] val fileFormat = new SimpleDateFormat("'sweep'yyMMdd'_'HHmmss'.aif'", Locale.US)
 
-  private val timer = new Timer(1000, ActionListener(_ => timerBang()))
+  private[this] val timer = new Timer(1000, ActionListener(_ => timerBang()))
 
   locally {
     import PrefsGUI._
@@ -260,7 +260,7 @@ ggTimerBeep.enabled = false  // XXX TODO
       Impulse.quit()
   }
 
-  title = Impulse.name
+  title = s"${Impulse.name} v${Impulse.version}"
   pack()
   Util.centerOnScreen(this)
   front()
@@ -307,7 +307,9 @@ ggTimerBeep.enabled = false  // XXX TODO
     val audioDevice     = Prefs.audioDevice     .getOrElse(Prefs.defaultAudioDevice)
     if (audioDevice != Prefs.noDeviceName) config.deviceName = Some(audioDevice)
     val numOutputs      = Prefs.audioNumOutputs .getOrElse(Prefs.defaultAudioNumOutputs)
+    val numInputs       = Prefs.audioNumInputs  .getOrElse(Prefs.defaultAudioNumInputs )
     config.outputBusChannels = numOutputs
+    config.inputBusChannels  = numInputs
     config.sampleRate   = Prefs.audioSampleRate .getOrElse(Prefs.defaultAudioSampleRate)
     config.transport    = osc.TCP
     config.pickPort()
@@ -324,22 +326,23 @@ ggTimerBeep.enabled = false  // XXX TODO
     audioServerPane.booting = Some(con)
   }
 
-  private var serverOption = Option.empty[Server]
+  private[this] var serverOption = Option.empty[Server]
 
-  private val cursor    = InMemory()
+  private[this] val cursor    = InMemory()
 
-  private val ctlLoFreq = "lo-freq"
-  private val ctlHiFreq = "hi-freq"
-  private val ctlDur    = "dur"
-  private val ctlAmp    = "amp"
-  private val ctlTail   = "tail"
-  private val ctlOut    = "out"
-  private val ctlIn     = "in"
-  private val ctlBuf    = "buf"
+  private[this] val ctlLoFreq = "lo-freq"
+  private[this] val ctlHiFreq = "hi-freq"
+  private[this] val ctlDur    = "dur"
+  private[this] val ctlAmp    = "amp"
+  private[this] val ctlTail   = "tail"
+  private[this] val ctlOut    = "out"
+  private[this] val ctlIn     = "in"
+  private[this] val ctlBuf    = "buf"
 
   private def mkSynthGraph(numInChannels: Int) = SynthGraph {
     import synth._
     import ugen._
+    import Ops._
 
     val low   = ctlLoFreq.ir(20f)
     val high  = ctlHiFreq.ir(20000f)

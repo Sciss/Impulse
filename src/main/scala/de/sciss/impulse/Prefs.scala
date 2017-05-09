@@ -2,7 +2,7 @@
  *  Prefs.scala
  *  (Impulse)
  *
- *  Copyright (c) 2012-2016 Hanns Holger Rutz. All rights reserved.
+ *  Copyright (c) 2014-2017 Hanns Holger Rutz. All rights reserved.
  *
  *  This software is published under the GNU General Public License v3+
  *
@@ -21,9 +21,9 @@ import de.sciss.file._
 object Prefs {
   // ---- Hardware ----
 
-  final val noDeviceName  = "<default>"
+  final val noDeviceName: String  = "<default>"
 
-  def defaultAudioDevice            = if (Desktop.isLinux) "Impulse" else noDeviceName
+  def defaultAudioDevice: String = if (Desktop.isLinux) "Impulse" else noDeviceName
   final val defaultAudioSampleRate  = 0
   final val defaultAudioNumInputs   = 8
   final val defaultAudioNumOutputs  = 8
@@ -35,10 +35,10 @@ object Prefs {
 
   // ---- Routing ----
 
-  final val defaultOutputChannel    = 1
-  final val defaultOutputAmplitude  = -6
-  final val defaultInputChannel     = 1
-  final val defaultNumChannels      = 1
+  final val defaultOutputChannel  : Int = 1
+  final val defaultOutputAmplitude: Int = -6
+  final val defaultInputChannel   : Int = 1
+  final val defaultNumChannels    : Int = 1
 
   def outputChannel   : Entry[Int    ] = userPrefs("output-channel"     )
   def outputAmplitude : Entry[Int    ] = userPrefs("output-amplitude"   )
@@ -47,10 +47,10 @@ object Prefs {
 
   // ---- Sweep ----
 
-  final val defaultSweepDuration    = 10
-  final val defaultLowFreq          = 20
-  final val defaultHighFreq         = 20000
-  final val defaultReverbTail       = 4
+  final val defaultSweepDuration  : Int = 10
+  final val defaultLowFreq        : Int = 20
+  final val defaultHighFreq       : Int = 20000
+  final val defaultReverbTail     : Int = 4
 
   def sweepDuration   : Entry[Int    ] = userPrefs("sweep-duration"     )
   def lowFreq         : Entry[Int    ] = userPrefs("low-frequency"      )
@@ -59,15 +59,15 @@ object Prefs {
 
   // ---- Timer ----
 
-  final val defaultTimerDelay       = 4
-  final val defaultTimerBeep        = false
+  final val defaultTimerDelay     : Int     = 4
+  final val defaultTimerBeep      : Boolean = false
 
   def timerDelay      : Entry[Int    ] = userPrefs("timer-delay"        )
   def timerBeep       : Entry[Boolean] = userPrefs("timer-beep"         )
 
   // ---- Output ----
 
-  def defaultOutputFolder = {
+  def defaultOutputFolder: File = {
     val h = userHome
     val m = h / "Music"
     if (m.isDirectory) m else h

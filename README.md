@@ -5,13 +5,27 @@
 
 ## statement
 
-Impulse is a simple tool to record sound impulse responses. It is (C)opyright 2014&ndash;2016 by Hanns Holger Rutz. All rights reserved. This project is released under the [GNU General Public License](https://raw.github.com/Sciss/Impulse/master/LICENSE) v3+ and comes with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
+Impulse is a simple tool to record sound impulse responses. It is (C)opyright 2014&ndash;2017 by Hanns Holger Rutz. All rights reserved. This project is released under the [GNU General Public License](https://raw.github.com/Sciss/Impulse/master/LICENSE) v3+ and comes with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
 
 ## requirements / installation
 
-Impulse builds with sbt against Scala 2.11 and 2.10. To create the standalone, run `sbt assembly`. For simplicity, the shell script `sbt` is included, written by [Paul Phillips](https://github.com/paulp/sbt-extras) and released under BSD-style license. Thus, if you do not have sbt installed, you can build using `./sbt assembly`.
+Impulse builds with sbt against Scala 2.12, 2.11, 2.10. To create the standalone, run `sbt assembly`. For simplicity, the shell script `sbt` is included, written by [Paul Phillips](https://github.com/paulp/sbt-extras) and released under BSD-style license. Thus, if you do not have sbt installed, you can build using `./sbt assembly`.
 
 You can also use sbt to launch the application via `sbt run`. The project is based on ScalaCollider/SoundProcesses and thus an existing SuperCollider installation is required. The SuperCollider location is currently read from environment variable `SC_HOME`. On Linux, `scsynth` should be on your `PATH`, so there is no action required.
+
+If you download a binary release ("universal" zip), you have to unpack the zip file and launch `bin/impulse` (Linux and Mac)
+or `bin/impulse.bat` (Windows). You can do that by calling these script files from a terminal or command prompt, or from
+the desktop environment by using right-click and selecting to execute these files.
+
+## GPL note
+
+Also relevant to the binary download: The license is GPL, and the project depends on other GPL'ed libraries.
+The GPL requires that we make all source code available. Please please follow the links to the respective GitHub repositories:
+
+- [WebLaf](https://github.com/mgarin/weblaf)
+- [Submin](https://github.com/Sciss/Submin)
+- [ScalaCollider-Swing](https://github.com/Sciss/ScalaColliderSwing)
+- [Impulse](https://github.com/Sciss/Impulse)
 
 ## contributing
 
