@@ -302,16 +302,16 @@ ggTimerBeep.enabled = false  // XXX TODO
   // ---- boot ----
 
   def boot(): Unit = {
-    val config        = Server.Config()
-
-    val audioDevice     = Prefs.audioDevice     .getOrElse(Prefs.defaultAudioDevice)
+    val config                = Server.Config()
+    val audioDevice           = Prefs.audioDevice     .getOrElse(Prefs.defaultAudioDevice)
     if (audioDevice != Prefs.noDeviceName) config.deviceName = Some(audioDevice)
-    val numOutputs      = Prefs.audioNumOutputs .getOrElse(Prefs.defaultAudioNumOutputs)
-    val numInputs       = Prefs.audioNumInputs  .getOrElse(Prefs.defaultAudioNumInputs )
-    config.outputBusChannels = numOutputs
-    config.inputBusChannels  = numInputs
-    config.sampleRate   = Prefs.audioSampleRate .getOrElse(Prefs.defaultAudioSampleRate)
-    config.transport    = osc.TCP
+    val numOutputs            = Prefs.audioNumOutputs .getOrElse(Prefs.defaultAudioNumOutputs)
+    val numInputs             = Prefs.audioNumInputs  .getOrElse(Prefs.defaultAudioNumInputs )
+    config.program            = Prefs.scsynth         .getOrElse(Prefs.defaultScsynth        )
+    config.outputBusChannels  = numOutputs
+    config.inputBusChannels   = numInputs
+    config.sampleRate         = Prefs.audioSampleRate .getOrElse(Prefs.defaultAudioSampleRate)
+    config.transport          = osc.TCP
     config.pickPort()
 
     //    TxnExecutor.defaultAtomic { implicit itx =>

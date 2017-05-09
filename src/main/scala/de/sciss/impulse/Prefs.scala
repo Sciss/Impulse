@@ -17,8 +17,15 @@ import de.sciss.desktop.Desktop
 import de.sciss.desktop.Preferences.Entry
 import Impulse.userPrefs
 import de.sciss.file._
+import de.sciss.synth.Server
 
 object Prefs {
+  // ---- SuperCollider ----
+
+  def defaultScsynth: String = Server.defaultProgram // if (Desktop.isWindows) "scsynth.exe" else "scsynthXXX"
+
+  def scsynth: Entry[String] = userPrefs("scsynth")
+
   // ---- Hardware ----
 
   final val noDeviceName: String  = "<default>"

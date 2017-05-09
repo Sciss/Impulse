@@ -2,7 +2,7 @@ lazy val appName  = "Impulse"
 lazy val appNameL = appName.toLowerCase
 
 name               := appName
-version            := "1.0.0"
+version            := "1.0.1"
 organization       := "de.sciss"
 scalaVersion       := "2.12.2"
 crossScalaVersions := Seq("2.12.2", "2.11.11", "2.10.6")
