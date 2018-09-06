@@ -4,11 +4,11 @@
 
 ## statement
 
-Impulse is a simple tool to record sound impulse responses. It is (C)opyright 2014&ndash;2017 by Hanns Holger Rutz. All rights reserved. This project is released under the [GNU General Public License](https://raw.github.com/Sciss/Impulse/master/LICENSE) v3+ and comes with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
+Impulse is a simple tool to record sound impulse responses. It is (C)opyright 2014&ndash;2018 by Hanns Holger Rutz. All rights reserved. This project is released under the [GNU General Public License](https://raw.github.com/Sciss/Impulse/master/LICENSE) v3+ and comes with absolutely no warranties. To contact the author, send an email to `contact at sciss.de`
 
 ## requirements / installation
 
-Impulse builds with sbt against Scala 2.12, 2.11, 2.10. To create the standalone, run `sbt assembly`. For simplicity, the shell script `sbt` is included, written by [Paul Phillips](https://github.com/paulp/sbt-extras) and released under BSD-style license. Thus, if you do not have sbt installed, you can build using `./sbt assembly`.
+Impulse builds with sbt against Scala 2.12, 2.11. To create the standalone, run `sbt assembly`. For simplicity, the shell script `sbt` is included, written by [Paul Phillips](https://github.com/paulp/sbt-extras) and released under BSD-style license. Thus, if you do not have sbt installed, you can build using `./sbt assembly`.
 
 You can also use sbt to launch the application via `sbt run`. The project is based on ScalaCollider/SoundProcesses and thus an existing SuperCollider installation is required. The SuperCollider location is currently read from environment variable `SC_HOME`. On Linux, `scsynth` should be on your `PATH`, so there is no action required.
 
