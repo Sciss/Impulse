@@ -53,6 +53,7 @@ object Impulse extends SwingApplicationImpl("Impulse") {
   }
 
   override protected def init(): Unit = {
+    println(s"Running Impulse $version on ${sys.props("java.runtime.name")} ${sys.props("java.runtime.version")}")
     Submin.install(false) // dark currently has glitches
     checkSuperCollider()
     new MainWindow

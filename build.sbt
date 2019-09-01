@@ -3,11 +3,21 @@ lazy val appNameL = appName.toLowerCase
 
 lazy val dep = new {
   val main = new {
-    val desktop             = "0.8.0"
+    val audioFile           = "1.5.3"
+    val audioWidgets        = "1.14.3"
+    val desktop             = "0.10.4"
     val fileUtil            = "1.1.3"
-    val lucreSynth          = "3.12.3"
-    val scalaColliderSwing  = "1.34.1"
-    val submin              = "0.2.2"
+    val lucre               = "3.13.1"
+    val lucreSynth          = "3.30.0"
+    val model               = "0.3.4"
+    val numbers             = "0.2.0"
+    val scalaCollider       = "1.28.4"
+    val scalaColliderSwing  = "1.41.4"
+    val scalaColliderUGens  = "1.19.5"
+    val scalaOSC            = "1.2.0"
+    val scalaSwing          = "2.1.1"
+    val submin              = "0.2.5"
+    val swingPlus           = "0.4.2"
   }
 }
 
@@ -15,17 +25,32 @@ lazy val commonSettings = Seq(
   name               := appName,
   version            := "1.1.0-SNAPSHOT",
   organization       := "de.sciss",
-  scalaVersion       := "2.12.6",
-  crossScalaVersions := Seq("2.12.6", "2.11.12"),
+  scalaVersion       := "2.12.9",
+  crossScalaVersions := Seq("2.12.9", "2.13.0"),
   description        := "A simple tool to record sound impulse responses",
   homepage           := Some(url(s"https://git.iem.at/sciss/${name.value}")),
   licenses           := Seq("GPL v3+" -> url("http://www.gnu.org/licenses/gpl-3.0.txt")),
   libraryDependencies ++= Seq(
-    "de.sciss" %% "lucresynth"              % dep.main.lucreSynth,
+    "de.sciss" %% "audiofile"               % dep.main.audioFile,
+    "de.sciss" %% "audiowidgets-core"       % dep.main.audioWidgets,
+    "de.sciss" %% "audiowidgets-swing"      % dep.main.audioWidgets,
+    "de.sciss" %% "desktop-core"            % dep.main.desktop,
+    "de.sciss" %% "desktop-linux"           % dep.main.desktop,
     "de.sciss" %% "desktop-mac"             % dep.main.desktop,
-    "de.sciss" %  "submin"                  % dep.main.submin,
+    "de.sciss" %% "fileutil"                % dep.main.fileUtil,
+    "de.sciss" %% "lucre-base"              % dep.main.lucre,
+    "de.sciss" %% "lucre-core"              % dep.main.lucre,
+    "de.sciss" %% "lucresynth"              % dep.main.lucreSynth,
+    "de.sciss" %% "model"                   % dep.main.model,
+    "de.sciss" %% "numbers"                 % dep.main.numbers,
+    "de.sciss" %% "scalacollider"           % dep.main.scalaCollider,
     "de.sciss" %% "scalacolliderswing-core" % dep.main.scalaColliderSwing,
-    "de.sciss" %% "fileutil"                % dep.main.fileUtil
+    "de.sciss" %% "scalacolliderugens-api"  % dep.main.scalaColliderUGens,
+    "de.sciss" %% "scalacolliderugens-core" % dep.main.scalaColliderUGens,
+    "de.sciss" %% "scalaosc"                % dep.main.scalaOSC,
+    "de.sciss" %  "submin"                  % dep.main.submin,
+    "de.sciss" %% "swingplus"               % dep.main.swingPlus,
+    "org.scala-lang.modules" %% "scala-swing" % dep.main.scalaSwing,
   ),
   scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-encoding", "utf8", "-Xfuture")
 )
@@ -33,12 +58,14 @@ lazy val commonSettings = Seq(
 lazy val root = project.in(file("."))
   .enablePlugins(BuildInfoPlugin)
   .enablePlugins(JavaAppPackaging)
+  .enablePlugins(JlinkPlugin)
   .settings(commonSettings)
   .settings(publishSettings)
   .settings(assemblySettings)
   .settings(useNativeZip) // cf. https://github.com/sbt/sbt-native-packager/issues/334
   .settings(pkgUniversalSettings)
   .settings(
+    jlinkIgnoreMissingDependency := JlinkIgnore.everything, // temporary for testing
     buildInfoKeys := Seq(name, organization, version, scalaVersion, description,
       BuildInfoKey.map(homepage) { case (k, opt) => k -> opt.get },
       BuildInfoKey.map(licenses) { case (_, Seq( (lic, _) )) => "license" -> lic }

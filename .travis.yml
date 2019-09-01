@@ -1,19 +1,10 @@
+dist: trusty
+
 language: scala
 
 scala:
-  - 2.12.6
-  - 2.11.12
+  - 2.12.9
+  - 2.13.0
 
-env:
-  - JDK=oraclejdk8
-  # native packager plugin fails with this:
-  # - JDK=openjdk6
-
-before_script:
-  - jdk_switcher use $JDK
-
-#matrix:
-#  # scala 2.12 requires java 8
-#  exclude:
-#    - scala: 2.12.2
-#      env: JDK=openjdk6
+jdk:
+  - openjdk8

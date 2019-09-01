@@ -448,7 +448,7 @@ ggTimerBeep.enabled = false  // XXX TODO
         ctlLoFreq -> loFreq,
         ctlHiFreq -> hiFreq,
         ctlDur    -> dur,
-        ctlAmp    -> ampDb.dbamp,
+        ctlAmp    -> ampDb.dbAmp,
         ctlTail   -> tail,
         ctlOut    -> outIndex,
         ctlIn     -> inIndex,
