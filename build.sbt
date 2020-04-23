@@ -58,7 +58,7 @@ lazy val commonSettings = Seq(
 lazy val root = project.in(file("."))
   .enablePlugins(BuildInfoPlugin)
   .enablePlugins(JavaAppPackaging)
-  .enablePlugins(JlinkPlugin)
+  // .enablePlugins(JlinkPlugin)
   .settings(commonSettings)
   .settings(publishSettings)
   .settings(assemblySettings)
