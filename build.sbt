@@ -3,30 +3,30 @@ lazy val appNameL = appName.toLowerCase
 
 lazy val dep = new {
   val main = new {
-    val audioFile           = "1.5.3"
+    val audioFile           = "1.5.4"
     val audioWidgets        = "1.14.4"
-    val desktop             = "0.10.4"
+    val desktop             = "0.10.6"
     val fileUtil            = "1.1.3"
-    val lucre               = "3.16.0"
-    val lucreSynth          = "3.30.0"
+    val lucre               = "3.17.0"
+    val lucreSynth          = "3.35.2"
     val model               = "0.3.4"
     val numbers             = "0.2.0"
     val scalaCollider       = "1.28.5"
     val scalaColliderSwing  = "1.41.6"
-    val scalaColliderUGens  = "1.19.5"
-    val scalaOSC            = "1.2.0"
+    val scalaColliderUGens  = "1.19.6"
+    val scalaOSC            = "1.2.1"
     val scalaSwing          = "2.1.1"
-    val submin              = "0.3.3"
+    val submin              = "0.3.4"
     val swingPlus           = "0.4.2"
   }
 }
 
 lazy val commonSettings = Seq(
   name               := appName,
-  version            := "1.1.0-SNAPSHOT",
+  version            := "1.1.0",
   organization       := "de.sciss",
-  scalaVersion       := "2.12.10",
-  crossScalaVersions := Seq("2.12.10", "2.13.1"),
+  scalaVersion       := "2.13.2",
+  crossScalaVersions := Seq("2.12.11", "2.13.2"),
   description        := "A simple tool to record sound impulse responses",
   homepage           := Some(url(s"https://git.iem.at/sciss/${name.value}")),
   licenses           := Seq("GPL v3+" -> url("http://www.gnu.org/licenses/gpl-3.0.txt")),
@@ -40,7 +40,7 @@ lazy val commonSettings = Seq(
     "de.sciss" %% "fileutil"                % dep.main.fileUtil,
     "de.sciss" %% "lucre-base"              % dep.main.lucre,
     "de.sciss" %% "lucre-core"              % dep.main.lucre,
-    "de.sciss" %% "lucresynth"              % dep.main.lucreSynth,
+    "de.sciss" %% "lucre-synth"             % dep.main.lucreSynth,
     "de.sciss" %% "model"                   % dep.main.model,
     "de.sciss" %% "numbers"                 % dep.main.numbers,
     "de.sciss" %% "scalacollider"           % dep.main.scalaCollider,

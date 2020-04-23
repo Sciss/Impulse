@@ -4,10 +4,22 @@
 
 ## statement
 
-Impulse is a simple tool to record sound impulse responses. It is (C)opyright 2014&ndash;2019 by Hanns Holger Rutz. 
+Impulse is a simple tool to record sound impulse responses. It is (C)opyright 2014&ndash;2020 by Hanns Holger Rutz. 
 All rights reserved. This project is released under the
 [GNU General Public License](https://raw.github.com/Sciss/Impulse/master/LICENSE) v3+ and comes with absolutely no 
 warranties. To contact the author, send an email to `contact at sciss.de`
+
+## Important: Mellite workshop
+
+After v1.1.0, I translated the mechanism to a [Mellite](https://sciss.de/mellite) workspace. Therefore, the
+standalone Scala project should probably be considered deprecated. The workspace version now does the entire
+process including sweep deconvolution, so you end up with ready-to-use impulse responses. You need Mellite
+v2.46.0 or newer. The zipped workspace `.mllt.zip` file can be found in the
+[GitHub releases](https://github.com/Sciss/Impulse/releases/latest).
+
+Below is the information for the older standalone version.
+
+-----
 
 ## requirements / installation
 
